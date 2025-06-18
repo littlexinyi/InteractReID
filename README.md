@@ -101,7 +101,13 @@ bash model_test.sh
 ## Citation
 If you find this paper useful, please consider staring 🌟 this repo and citing 📑 our paper:
 ```
-
+@inproceedings{InteractReID,
+ author = {Xinyi, Wu and Cuiqun, Chen and Hui, Zeng and Zhiping, Cai and Bo, Du and Mang, Ye},
+  title = {Interactive Sketch-based Person Re-Identification with Text Feedback},
+  year = {2025},
+  booktitle = {International Conference on Multimedia and Expo (ICME)},
+  numpages = {9},
+}
 ```
 
 
