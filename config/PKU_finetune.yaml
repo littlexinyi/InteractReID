@@ -1,0 +1,92 @@
+device: 0
+
+misc:
+  seed: 0
+
+experiment:
+  # image
+  input_resolution: [224, 224]
+  simclr_mlp: [512, 128, 512]
+  simclr_temperature: 0.1
+  # mix
+  mvs_image: false
+  mixgen: false
+  mixgen_type: cat  # ori or cat
+  mixgen_p: 0.1
+  mixgen_ratio: 0.1
+  temp: 0.07
+  # loss
+  nitc_ratio: 1.0
+  nisc_ratio: 1.0
+  ####
+  ss: false
+  ss_ratio: 0.4
+  ####
+  ritc: true
+  ritc_eps: 1.0e-2
+  ritc_ratio: 1.0
+  ####
+  mlm: false
+  mlm_ratio: 1.0
+  cmt_depth: 4 # cross modal transformer self attn layers
+  ####
+  citc: false
+  citc_lambda1: 0.25
+  citc_lambda2: 0.25
+  citc_ratio: 0.1
+  ####
+  id: false
+  id_ratio: 1.0
+
+  # text
+  dropout: 0.05
+  eda_alpha: 0.05
+  back_trans: true
+  backtrans_p: 0.1
+  text_length: 77
+  patch_size: 16
+
+
+schedule:
+  lr: 1.0e-5
+  epoch: 40
+  epoch_warmup: 5
+  lr_start: 1.0e-6
+  lr_end: 5.0e-6
+  weight_decay: 0.02
+  betas: [0.9, 0.98]
+  eps: 1.0e-8
+  ratio_factor: 10
+   #mapping param: 1e-4, other basemodel param:1e-5
+
+model:
+  ckpt_type: finetune_train  # finetune_train / direct_test / pretrain
+  checkpoint: 'checkpoint/ViT-B-16.pt'
+  saved_path: 'checkpoint/'
+  output_path: 'outputs'
+  exp_name: 'PreTriPEDES_Shared_ViT16_FTALL_epoch40_bz16'
+  use_gather: true
+  softlabel_ratio: 0.5
+  embed_dim: 512
+  vocab_size: 49408
+  middle_dim: 768
+  n_layer: 2
+  dropout: 0.1
+  mapping_type: MLP
+
+log:
+  print_period: 1
+
+data:
+  pretrain_data: Tri-PEDES   #CLIP, CUHK-PEDES, Tri-PEDES, ICFG-PEDES, RSTPReid
+  dataset: PKUSketch
+  trial: 1
+  alpha: 0.1
+  batch_size: 16
+  test_batch_size: 16
+  num_workers: 8
+  anno_dir: '/data0/wxy_data/datasets/PKUSketch/'
+
+distributed:
+  backend: nccl
+  url: 'env://'
