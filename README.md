@@ -87,6 +87,7 @@ After knowledge adaptation for CLIP, you can train a vision-to-text converting n
 ```sh
 bash tokenlearning.sh
 ```
+## Test
 
 If you need to test your trained model directly, you can use the following command:
 ```sh
